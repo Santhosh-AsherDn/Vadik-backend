@@ -48,7 +48,7 @@ const retailerSchema = new mongoose.Schema(
       enum: ["Active User", "Inactive User"],
       default: "Active User",
     },
-    firstVisitDate: {
+    firstVisit: {
       type: Date,
       default: Date.now,
     },

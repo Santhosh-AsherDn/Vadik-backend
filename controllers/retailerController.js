@@ -25,3 +25,89 @@ exports.loginRetailer = async (req, res) => {
    // for must change password after login
   //  res.json({ token, mustChangePassword: retailer.mustChangePassword });
 };
+
+// 🔹 Basic Details
+
+exports.updateBasicDetails = async (req, res) => {
+  try {
+    const retailer = await Retailer.findByIdAndUpdate(req.params.id, {
+      $set: {
+        name: req.body.name,
+        phone: req.body.phone,
+        gender: req.body.gender,
+        source: req.body.source,
+        firstVisit: req.body.firstVisit,
+        status: req.body.status,
+        profileId: req.body.profileId,
+      },
+    }, { new: true });
+    res.json(retailer);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// 🔹 Advanced Details
+
+exports.updateAdvancedDetails = async (req, res) => {
+  try {
+    const retailer = await Retailer.findByIdAndUpdate(req.params.id, {
+      $set: {
+        dateOfBirth: req.body.dateOfBirth,
+        dateOfAnniversary: req.body.dateOfAnniversary,
+        profession: req.body.profession,
+        incomeLevel: req.body.incomeLevel,
+        location: req.body.location,
+        favouriteProducts: req.body.favouriteProducts,
+        favouriteColours: req.body.favouriteColours,
+        favouriteBrands: req.body.favouriteBrands,
+        lifestyle: req.body.lifestyle,
+        interests: req.body.interests,
+        customerLabel: req.body.customerLabel,
+
+      },
+    }, { new: true });
+    res.json(retailer);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// 🔹 Privacy Details
+
+exports.updatePrivacyDetails = async (req, res) => {
+  try {
+    const retailer = await Retailer.findByIdAndUpdate(req.params.id, {
+      $set: {
+        communicationChannel: req.body.communicationChannel,
+        typesOfCommunication: req.body.typesOfCommunication,
+        privacyNotes: req.body.privacyNotes,
+        satisfactionScore: req.body.satisfactionScore,
+        engagementScore: req.body.engagementScore,
+        optOption: req.body.optOption,
+
+      },
+    }, { new: true });
+    res.json(retailer);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// 🔹 Referral Details
+
+exports.updateReferralDetails = async (req, res) => {
+  try {
+    const retailer = await Retailer.findByIdAndUpdate(req.params.id, {
+      $set: {
+        referredBy: req.body.referredBy,
+        referralCode: req.body.referralCode,
+        rewardsEarned: req.body.rewardsEarned,
+        
+      },
+    }, { new: true });
+    res.json(retailer);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
