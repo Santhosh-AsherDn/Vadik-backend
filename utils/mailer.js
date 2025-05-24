@@ -24,11 +24,11 @@ exports.sendCredentials = async (email, password) => {
   //   subject: "Your Credentials",
   //   text: `Your account is approved. Login credentials:\nEmail: ${email}\nPassword: ${password}`,
   // };
-
+const fullName = `${retailer.firstName} ${retailer.lastName}`;
   const mailOptions = {
     from: `"Vadik.Ai" <${process.env.EMAIL_USER}>`,
     to: email,
-    subject: "Your Account Has Been Approved - Login Credentials",
+    subject: `'Hello' + ${fullName}, Your Account Has Been Approved - Login Credentials`,
     html: `
       <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: auto;">
         <div style="border: 1px solid #ddd; padding: 20px; border-radius: 8px;">

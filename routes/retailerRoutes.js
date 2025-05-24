@@ -1,24 +1,40 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/retailerController");
+const upload = require("../middlewares/upload");
+
+// Route: Register Retailer
 
 router.post("/register", controller.registerRetailer);
+
+router.post(
+  "/register",
+  upload.single("photo"), // `photo` is the field name for the uploaded file
+ controller.registerRetailer
+);
+
+// Route: Login Retailer
+
 router.post("/login", controller.loginRetailer);
 
-// Route: Update Basic Details
+// Update Retailer
 
-router.put('/basic/:id', controller.updateBasicDetails);
+router.put("/update/:retailerId", controller.updateRetailer);
 
-// Route: Update Advanced Details
+// // Route: Update Basic Details
 
-router.put('/advanced/:id', controller.updateAdvancedDetails);
+// router.put('/basic/:id', controller.updateBasicDetails);
 
-// Route: Update Privacy Details
+// // Route: Update Advanced Details
 
-router.put('/privacy/:id', controller.updatePrivacyDetails);
+// router.put('/advanced/:id', controller.updateAdvancedDetails);
 
-// Route: Update Referral Details
+// // Route: Update Privacy Details
 
-router.put('/referral/:id', controller.updateReferralDetails);
+// router.put('/privacy/:id', controller.updatePrivacyDetails);
+
+// // Route: Update Referral Details
+
+// router.put('/referral/:id', controller.updateReferralDetails);
 
 module.exports = router;
