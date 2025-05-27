@@ -14,6 +14,8 @@ const campaignRoutes = require("./routes/campaignRoutes");
 
 const dailyJobRunner = require("./scheduler/jobRunner");
 
+const productRoutes = require('./routes/productRoutes');
+
 const app = express();
 app.use(express.json());
 
@@ -35,6 +37,9 @@ app.use("/customer", customerRoutes);
 app.use("/dashboard", dashboardRoutes);
 
 app.use("/campaigns", campaignRoutes);
+
+app.use("/products", productRoutes);
+
 
 // Schedule the job to run every midnight
 cron.schedule("0 0 * * *", dailyJobRunner);

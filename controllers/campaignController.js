@@ -1,14 +1,20 @@
-const Campaign = require('../models/Campaign');
-const filterUsers = require('../utils/filterUsers');
-const { sendMessage } = require('./messageScheduler');
+const Campaign = require("../models/Campaign");
+// const filterUsers = require("../utils/filterUsers");
+const { sendMessage } = require("./messageScheduler");
 
 exports.createCampaign = async (req, res) => {
   try {
     const campaign = new Campaign(req.body);
     await campaign.save();
 
-    if (campaign.schedule.type === 'once') {
-      setTimeout(() => sendMessage(campaign._id), new Date(campaign.schedule.date) - Date.now());
+    // const users = await filterUsers(campaign.filters);  - for user filter send messages
+    
+    
+    if (campaign.schedule.type === "once") {
+      setTimeout(
+        () => sendMessage(campaign._id),
+        new Date(campaign.schedule.date) - Date.now()
+      );
     }
 
     res.status(201).json(campaign);
